@@ -5,18 +5,22 @@ import Funcs
 
 main :: IO ()
 main = do
-    let elenco = selectPlayers player_list
+    selecao <- selectPlayers player_list
+    let elenco = selecao 
+    
+    --putStrLn "\n\nElenco do dia:"
+    --printPlayers elenco
     
     let roster = sortList elenco
+    putStrLn "\n\nElenco ordenado por habilidade:"
+    printPlayers roster
 
     let times = splitList roster
 
-    putStrLn "Time Preto"
-    let black :: [Player]
-        black = fst times
-    printPlayers black
+    printMatch times
 
-    putStrLn "Time Amarelo"
-    let yellow :: [Player]
-        yellow = snd times
+    let teams = createTeams times
+
+    let (black, yellow) = teams
+    printPlayers black
     printPlayers yellow
