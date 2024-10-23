@@ -12,7 +12,7 @@ printPlayers list = do
 sortList :: [Player] -> [Player]
 sortList list = sortOn (Down . skill) list
 
-splitList :: [Player] -> [(Player, Player)] -- correção na tipagem da função splitlist
+splitList :: [Player] -> [(Player, Player)]
 splitList (x:y:xs) = (x, y) : splitList xs
 splitList _ = []
 
@@ -25,11 +25,13 @@ selectPlayers list = do
     
     return roster
 
-createTeams :: [(Player, Player)] -> ([Player], [Player]) -- funcao vai ser alterada, pois a lógica de divisão não é justa com o segundo time
-createTeams list = (blk, ylw) 
-    where
-        blk = map fst list
-        ylw = map snd list
+createTeams :: [Player] -> ([Player], [Player])
+createTeams [] = ([], [])
+createTeams (p1:p2 : xs) =
+    let(teamBlack, teamYellow) = createTeams xs
+    in  if length teamBlack == ((length teamYellow) + 1)
+        then (p1:teamYellow, p2:teamBlack)
+        else (p1:teamBlack, p2:teamYellow)
 
 printMatch :: [(Player, Player)] -> IO () -- funcao de teste para ver se a lista de tuplas estava sendo separada corretamente
 printMatch = mapM_ printPair
