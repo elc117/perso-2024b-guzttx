@@ -11,7 +11,7 @@ main = do
     --putStrLn "\n\nElenco do dia:"
     --printPlayers elenco
     
-    let roster = sortList elenco
+    let roster = moveRight(sortList elenco)
     putStrLn "\n\nElenco ordenado por habilidade:"
     printPlayers roster
 

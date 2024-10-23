@@ -35,3 +35,6 @@ printMatch :: [(Player, Player)] -> IO () -- funcao de teste para ver se a lista
 printMatch = mapM_ printPair
     where 
         printPair (a, b) = putStrLn $ name a ++ " x " ++ name b
+
+moveRight :: [Player] -> [Player]
+moveRight list = last list : init list
