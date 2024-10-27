@@ -1,26 +1,11 @@
 module Main where
 
 import Data
-import Funcs
+import Menu
+import Data.IORef
 
 main :: IO ()
 main = do
-    selecao <- selectPlayers player_list
-    let elenco = selecao 
-    
-    --putStrLn "\n\nElenco do dia:"
-    --printPlayers elenco
-    
-    let roster = moveRight(sortList elenco)
-    putStrLn "\n\nElenco ordenado por habilidade:"
-    printPlayers roster
-
-    let times = splitList roster
-
-    printMatch times
-
-    let teams = createTeams times
-
-    let (black, yellow) = teams
-    printPlayers black
-    printPlayers yellow
+    playerListRef <- newIORef player_list
+    lastGameRoster <- newIORef []
+    menu playerListRef lastGameRoster
