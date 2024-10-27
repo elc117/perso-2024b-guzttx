@@ -314,5 +314,7 @@ menu playerListRef lastGameRoster = do
 
 Gostei bastante de fazer o trabalho, mesmo tendo quebrado a cabeça inúmeras vezes para resolver os problemas, pois as vezes parecia que nada fosse possível de resolver os erros de execução. Desafiador e divertido!
 
+Referências: https://stackoverflow.com/questions/20482132/how-to-implement-words-function https://stackoverflow.com/questions/27255822/convert-list-op-tuples-into-two-lists-of-one-elemnt-tuple?rq=3 https://stackoverflow.com/questions/27404063/what-is-the-equivalent-statement-of-a-while-loop-in-haskell https://haskell.tailorfontela.com.br/chapters https://www.youtube.com/watch?v=7sbxVALuuxA&list=PLe7Ei6viL6jGp1Rfu0dil1JH1SHk9bgDV ChatGPT
+
 
 
