@@ -346,7 +346,8 @@ addOutsiders playerListRef n = do
             addOutsiders playerListRef n
 ````
 
-
+### Video da execução:
+[![Video Title](https://img.youtube.com/vi/pIYA1lyFaXY/0.jpg)](https://www.youtube.com/watch?v=pIYA1lyFaXY)
 
 Gostei bastante de fazer o trabalho, mesmo tendo quebrado a cabeça inúmeras vezes para resolver os problemas, pois as vezes parecia que nada fosse possível de resolver os erros de execução. Desafiador e divertido!
 
