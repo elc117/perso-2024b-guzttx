@@ -1,5 +1,5 @@
 # Separador de times baseado em habilidade utilizando listas em haskell
-## _by Gustavo Teixera, em Haskell_
+## _by Gustavo Teixeira, em Haskell_
 
 ##### Produção individual - Paradigmas da Programação
 ##### Professora: Andrea Schwertner Charão
