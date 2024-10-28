@@ -1,5 +1,8 @@
+# perso-2024b-guzttx
+perso-2024b-guzttx created by GitHub Classroom
+
 # Separador de times baseado em habilidade utilizando listas em haskell
-## _by Gustavo Teixeira, em Haskell_
+## _by Gustavo Teixera, em Haskell_
 
 ##### Produção individual - Paradigmas da Programação
 ##### Professora: Andrea Schwertner Charão
@@ -311,10 +314,47 @@ menu playerListRef lastGameRoster = do
         putStrLn "Opção inválida!"
         menu playerListRef lastGameRoster
 ````
+Na ultima iteração, aprimorei a maneira de adicionar jogadores de fora:
+```sh
+addOutsiders :: IORef [Player] -> IO () -- adiciona x jogadores de fora
+addOutsiders playerListRef 0 = return () 
+addOutsiders playerListRef n = do
+    putStrLn "Digite o nome do jogador:"
+    nome <- getLine
+    putStrLn "Digite a habilidade do jogador:"
+    skill <- getLine
+    let newGuy = createPlayer nome (read skill :: Int)
+    modifyIORef playerListRef (newGuy :)
+    addOutsiders playerListRef (n - 1)
+````
+Mas ela não estava funcionando de maneira nenhuma, então com a ajuda do chatGPT corrigi ela e cheguei nisso:
+```sh
+addOutsiders :: IORef [Player] -> Int -> IO () 
+addOutsiders playerListRef 0 = return () 
+addOutsiders playerListRef n = do
+    putStrLn "Digite o nome do jogador:"
+    nome <- getLine
+    putStrLn "Digite a habilidade do jogador:"
+    skillStr <- getLine
+    case reads skillStr :: [(Int, String)] of
+        [(skill, "")] -> do
+            let newGuy = createPlayer nome skill
+            modifyIORef playerListRef (newGuy :)
+            addOutsiders playerListRef (n - 1)
+        _ -> do
+            putStrLn "Habilidade inválida! Digite um número inteiro."
+            addOutsiders playerListRef n
+````
+
+
 
 Gostei bastante de fazer o trabalho, mesmo tendo quebrado a cabeça inúmeras vezes para resolver os problemas, pois as vezes parecia que nada fosse possível de resolver os erros de execução. Desafiador e divertido!
 
-Referências: https://stackoverflow.com/questions/20482132/how-to-implement-words-function https://stackoverflow.com/questions/27255822/convert-list-op-tuples-into-two-lists-of-one-elemnt-tuple?rq=3 https://stackoverflow.com/questions/27404063/what-is-the-equivalent-statement-of-a-while-loop-in-haskell https://haskell.tailorfontela.com.br/chapters https://www.youtube.com/watch?v=7sbxVALuuxA&list=PLe7Ei6viL6jGp1Rfu0dil1JH1SHk9bgDV ChatGPT
-
-
-
+Referências: 
+https://stackoverflow.com/questions/20482132/how-to-implement-words-function
+https://stackoverflow.com/questions/27255822/convert-list-op-tuples-into-two-lists-of-one-elemnt-tuple?rq=3
+https://stackoverflow.com/questions/27404063/what-is-the-equivalent-statement-of-a-while-loop-in-haskell
+https://haskell.tailorfontela.com.br/chapters
+https://www.youtube.com/watch?v=7sbxVALuuxA&list=PLe7Ei6viL6jGp1Rfu0dil1JH1SHk9bgDV
+https://www.reddit.com/r/haskellquestions/comments/o24qh3/how_to_make_a_for_loop_in_haskell/
+ChatGPT
