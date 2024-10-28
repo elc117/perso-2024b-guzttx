@@ -20,19 +20,14 @@ menu playerListRef lastGameRoster = do
     opcao <- getLine
     case opcao of
       "1" -> do
-        putStrLn "Há algum jogador de fora do Futebruxos? (s/n)"
+        putStrLn "Há algum jogador de fora do Futebruxos?"
         opcao <- getLine
 
         if opcao == "s"
             then do
-                putStrLn "Digite o nome do jogador:"
-                nome <- getLine
-                putStrLn "Digite a habilidade do jogador:"
-                habilidade <- getLine
-                let newGuy = createPlayer nome (read habilidade :: Int)
-                
-                addPlayer playerListRef newGuy
-                putStrLn "Jogador adicionado com sucesso!"
+                putStrLn "Quantos?"
+                n <- getLine
+                addOutsiders playerListRef (read n :: Int)
             else
                 putStrLn "Ok, separando lista."
 

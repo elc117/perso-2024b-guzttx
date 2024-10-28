@@ -61,6 +61,21 @@ createPlayer name skill = Player {name = name, skill = skill}
 addPlayer :: IORef [Player] -> Player -> IO () -- adiciona um jogador a uma lista de jogadores
 addPlayer playerListRef player = modifyIORef playerListRef (player :)
 
+addOutsiders :: IORef [Player] -> Int -> IO () 
+addOutsiders playerListRef 0 = return () 
+addOutsiders playerListRef n = do
+    putStrLn "Digite o nome do jogador:"
+    nome <- getLine
+    putStrLn "Digite a habilidade do jogador:"
+    skillStr <- getLine
+    case reads skillStr :: [(Int, String)] of
+        [(skill, "")] -> do
+            let newGuy = createPlayer nome skill
+            modifyIORef playerListRef (newGuy :)
+            addOutsiders playerListRef (n - 1)
+        _ -> do
+            putStrLn "Habilidade inválida! Digite um número inteiro."
+            addOutsiders playerListRef n
 -- funcoes que foram implementadas procurando soluções, mas não foram mais utilizadas
 
 splitList :: [Player] -> [(Player, Player)] -- func que separa a lista de jogadores em tuplas de 2, não foi mais usada
