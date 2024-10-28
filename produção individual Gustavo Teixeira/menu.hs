@@ -20,7 +20,7 @@ menu playerListRef lastGameRoster = do
     opcao <- getLine
     case opcao of
       "1" -> do
-        putStrLn "Há algum jogador de fora do Futebruxos?"
+        putStrLn "Há algum jogador de fora do Futebruxos?s/n"
         opcao <- getLine
 
         if opcao == "s"
